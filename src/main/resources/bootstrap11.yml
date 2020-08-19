@@ -1,0 +1,12 @@
+nacos:
+ url: localhost:8848
+ group: DEFAULT_GROUP
+spring:
+  application:
+    name: spring_drools
+  cloud:
+    nacos:
+      config:
+       service-addr: ${nacos.url}
+       group: ${nacos.group}
+       file-extension: yaml

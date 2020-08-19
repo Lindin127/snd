@@ -1,0 +1,27 @@
+package rules;
+//导入使用的类
+import  com.example.demo.bean.Person;
+
+dialect  "mvel"
+
+rule "Age1"  //规则名称
+     when
+               $person : Person(age<16)          //规则的条件部分
+           then
+           $person.setBz("未成年");
+           System.out.println($person.getName()+":的年龄为"+$person.getAge()+"====不符合要求！");
+end
+rule "Age2"  //规则名称
+     when
+               $person : Person(age>50)          //规则的条件部分
+           then
+           $person.setBz("老年人");
+           System.out.println($person.getName()+":的年龄为"+$person.getAge()+"====不符合要求！");
+end
+rule "rightAge"                                      // 规则名，唯一
+        when
+             $person : Person(age>=16 && age<=50)        //规则的条件部分
+        then
+        $person.setBz("符合要求");
+            System.out.println($person.getName()+":的年龄为"+$person.getAge()+"====符合要求！");
+end
